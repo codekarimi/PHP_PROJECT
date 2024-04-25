@@ -1,3 +1,12 @@
+<?php
+
+//
+session_start();
+if (isset($_SESSION["user"])) {
+    header("location:index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,76 +24,75 @@
         <?php
         // print_r($_POST);
         if (isset($_POST["submit"])) {
-           $fullname=$_POST["fullname"];
-           $email
-            = $_POST["email"];
-           $password
-            = $_POST["password"];
-           $rpassword
-            = $_POST["rpassword"];
+            $fullname = $_POST["fullname"];
+            $email
+                = $_POST["email"];
+            $password
+                = $_POST["password"];
+            $rpassword
+                = $_POST["rpassword"];
 
 
             //password encryption
-            $passwordHash=password_hash($password,PASSWORD_DEFAULT);
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
             //if errors variable is empty is good now(for validation)
-            $errors =array();
+            $errors = array();
 
 
             #if input are empty
-            if ( empty($fullname) OR  empty($email) OR  empty($password) OR  empty($rpassword)) {
-                array_push($errors,"All field are required");
+            if (empty($fullname) or  empty($email) or  empty($password) or  empty($rpassword)) {
+                array_push($errors, "All field are required");
             }
 
             //checking email
-           if (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
-            array_push($errors, "email is not valid");
-           } 
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                array_push($errors, "email is not valid");
+            }
 
-           //checking on the password
-          if (strlen($password)<8) {
+            //checking on the password
+            if (strlen($password) < 8) {
                 array_push($errors, "password must be at least 8 character long");
-          } 
+            }
 
-          //password verification
-          if ($password !== $rpassword) {
-            array_push($errors, "Password dont match");
-          }
+            //password verification
+            if ($password !== $rpassword) {
+                array_push($errors, "Password dont match");
+            }
 
             //prevent duplicating mail
             require_once "database.php";
-          $sql= "SELECT * FROM users WHERE Email= '$email'";
-          $result= mysqli_query($conn,$sql);
-          $rowcount=mysqli_num_rows($result);
-          if ($rowcount) {
-            array_push($errors,"Email alreday exist");
-          }
+            $sql = "SELECT * FROM users WHERE Email= '$email'";
+            $result = mysqli_query($conn, $sql);
+            $rowcount = mysqli_num_rows($result);
+            if ($rowcount) {
+                array_push($errors, "Email alreday exist");
+            }
 
 
-          
+
             if (count($errors) > 0) {
                 foreach ($errors as $error)
                     echo "<div class='alert alert-danger'>$error</div>";
             } else {
                 //insert data to database
 
-               
 
-                $sql= "INSERT INTO users (Fullname,Email,Password)VALUES (?,?,?)";
-                $stmt=mysqli_stmt_init($conn);
-                $preparestmt = mysqli_stmt_prepare($stmt,$sql);
+
+                $sql = "INSERT INTO users (Fullname,Email,Password)VALUES (?,?,?)";
+                $stmt = mysqli_stmt_init($conn);
+                $preparestmt = mysqli_stmt_prepare($stmt, $sql);
                 if ($preparestmt) {
-                    mysqli_stmt_bind_param($stmt,"sss",$fullname,$email,$passwordHash);
+                    mysqli_stmt_bind_param($stmt, "sss", $fullname, $email, $passwordHash);
                     mysqli_stmt_execute($stmt);
                     echo "<div class='alert alert-success'>You registered successfully<div>";
-                }else{
-                    die ("something went wrong");
+                } else {
+                    die("something went wrong");
                 }
-
             }
         }
 
-       
+
         ?>
         <form action="registration.php" method="post">
 
@@ -104,6 +112,10 @@
                 <input type="submit" value="Register" name="submit" class="btn btn-primary">
             </div>
         </form>
+
+        <div>
+            <p>Already registred? <a href="/login.php">Click here</a></p>
+        </div>
     </div>
 </body>
 

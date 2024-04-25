@@ -1,3 +1,12 @@
+<?php
+
+//if user is logined in will direct to dashboard page
+session_start();
+if (isset($_SESSION["user"])) {
+    header("location:index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,31 +23,35 @@
 
     <div class="container">
 
-    <?php
-    if (isset($_POST["login"])){
-        $email
-        = $_POST["email"];
-        $password
-        = $_POST["password"];
+        <?php
+        if (isset($_POST["login"])) {
+            $email
+                = $_POST["email"];
+            $password
+                = $_POST["password"];
 
-        require_once "database.php";
+            require_once "database.php";
 
-        $sql= "SELECT * FROM users WHERE Email ='$email'";
-        $result= mysqli_query($conn,$sql);
-        $user=mysqli_fetch_array($result,MYSQLI_ASSOC);
-        if ($user) {
-            if (password_verify($password,$user["password"])) {
-                header("location: index.php");
-                die();
-            }else{
-                echo "<div class='alert alert-danger'>Password does not match</div>";
+            $sql = "SELECT * FROM users WHERE Email ='$email'";
+            $result = mysqli_query($conn, $sql);
+            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            if ($user) {
+                if (password_verify($password, $user["Password"])) {
+
+                    session_start();
+                    //allowin only logined user to access the dashboars
+                    $_SESSION["user"] = "yes";
+                    header("location: index.php");
+                    die();
+                } else {
+                    echo "<div class='alert alert-danger'>Password does not match</div>";
+                }
+            } else {
+                echo "<div class='alert alert-danger'>Email does not match</div>";
             }
-        }else{
-            echo "<div class='alert alert-danger'>Email does not match</div>";
         }
-    }
 
-?>
+        ?>
         <form action="login.php" method="post">
             <div class="form-group">
                 <input type="email" name="email" id="" class="form-control" placeholder="Enter email">
@@ -50,6 +63,10 @@
                 <input type="submit" name="login" value="Login" class="btn btn-primary">
             </div>
         </form>
+
+        <div>
+            <p>Not registered yet <a href="/registration.php">Click here</a></p>
+        </div>
     </div>
 
 
