@@ -49,18 +49,13 @@ session_start();
                                             $ad = mysqli_query($connect, "SELECT * FROM amin");
                                             $num = mysqli_num_rows($ad);
 
-
-
-                                            echo '<h5 class="my-2 text-white text-center" style="font: size 30px;">'.$num.'</h5>';
+                                            echo '<h5 class="my-2 text-white text-center" style="font: size 30px;">' . $num . '</h5>';
                                             ?>
-
-
-
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Admin</h5>
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="#"><i class="fas fa-users-cog fa-3x my-4" style="color:white"></i></a>
+                                            <a href="http://localhost:8080/Hospital%20management%20system/admin/admin.php"><i class="fas fa-users-cog fa-3x my-4" style="color:white"></i></a>
                                         </div>
                                     </div>
                                 </div>
