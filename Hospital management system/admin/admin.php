@@ -58,9 +58,9 @@ session_start();  #to store information on browwser
 
                                     $output .= '
                                   <tr>
-                                    <td>$id</td>
-                                    <td>$username</td>
-                                    <td><a href="admin?id=$id"><button id='.$id.' class="btn btn-danger
+                                    <td>'.$id.'</td>
+                                    <td>'.$username.'</td>
+                                    <td><a href="admin?id=$id"><button id="$id" class="btn btn-danger
                                     remove"> Remove</button></a>  </td>                                    ';
                                 }
 
@@ -93,7 +93,7 @@ session_start();  #to store information on browwser
                                     
                                     $uname =$_POST['uname'];
                                     $pass =$_POST['pass'];
-                                    $image =$_FILES['img']['name'];
+                                    $image =$_FILES['img'];
 
                                     $error = array();#array to display error
 
@@ -106,14 +106,17 @@ session_start();  #to store information on browwser
                                     }
 
                                     if (count($error) ==0) {
-                                        $q="INSERT INTO 'amin' ('username','password','profile')
-                                         VALUES ('.$uname.','$pass','$image')";#adding and admin
+                                        $q="INSERT INTO amin (username,password,profile)
+                                         VALUES ('.$uname.','.$pass.','.$image.')";#adding and admin
                                     
                                     $result=mysqli_query($connect,$q);
 
                                     if ($result) {
-                                        move_uploaded_file($_FILES['img']['tmp_name'],
-                                        'img/$image');  #The move_uploaded_file() function moves an uploaded file to a new destination.Note: This function only works on files uploaded via PHP's HTTP POST upload mechanism.Note: If the destination file already exists, it will be overwritten.
+                                        $upload= $_FILES['img']['tmp_name'];
+                                        move_uploaded_file($upload,
+                                                'C:/xampp/htdocs/Hospital management system/admin/img/'.$image['name']);
+                                                
+                                                // The move_uploaded_file() function moves an uploaded file to a new destination.Note: This function only works on files uploaded via PHP's HTTP POST upload mechanism.Note: If the destination file already exists, it will be overwritten.
                                     
                                     }else{
 
