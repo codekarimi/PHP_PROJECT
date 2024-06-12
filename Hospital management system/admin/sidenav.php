@@ -11,6 +11,7 @@
 
     <div class="list-group bg-info" style="height: 90vh;">
         <a href="http://localhost:8080/Hospital%20management%20system/admin/index.php" class="list-group-item list-group-item-action bg-info text-center text-white">DashBoard</a>
+        <a href="http://localhost:8080/Hospital%20management%20system/admin/profile.php" class="list-group-item list-group-item-action bg-info text-center text-white">Profile</a>
         <a href="http://localhost:8080/Hospital%20management%20system/admin/admin.php" class="list-group-item list-group-item-action bg-info text-center text-white">Administrators</a>
         <a href="" class="list-group-item list-group-item-action bg-info text-center text-white">Doctors</a>
         <a href="" class="list-group-item list-group-item-action bg-info text-center text-white">Patient</a>

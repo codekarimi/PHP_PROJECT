@@ -4,39 +4,36 @@ session_start();
 include('connection.php');
 
 
-if(isset($_POST["login"])){ #updating the admin login
+if (isset($_POST["login"])) { #updating the admin login
 
     $username = $_POST['uname'];
     $password = $_POST['pass'];
-    
+
     $error = array();
 
     //if both feilds are empty throw errrors
-    if(empty($username)){
-        $error['admin']="Enter Username";
-    }else if(empty($password)){
+    if (empty($username)) {
+        $error['admin'] = "Enter Username";
+    } else if (empty($password)) {
         $error['admin'] = "Enter Password";
     }
 
-    if(count($error)==0) {#login if details are collect
+    if (count($error) == 0) { #login if details are collect
 
-        $query="SELECT * FROM amin WHERE username='$username' AND password='$password'";
+        $query = "SELECT * FROM amin WHERE username='$username' AND password='$password'";
 
-        $result =mysqli_query($connect,$query);#mysqli_query() function performs a query against a database.
+        $result = mysqli_query($connect, $query); #mysqli_query() function performs a query against a database.
 
-        if(mysqli_num_rows($result)==1){#mysqli_num_rows() function returns the number of rows in a result set.
+        if (mysqli_num_rows($result) == 1) { #mysqli_num_rows() function returns the number of rows in a result set.
             echo "<script>alert('You have Login as and admin')</script>";
 
-            $_SESSION['admin']= $username;#this link explain php sessions(https://www.w3schools.com/php/php_sessions.asp)
+            $_SESSION['admin'] = $username; #this link explain php sessions(https://www.w3schools.com/php/php_sessions.asp)
 
             header("Location:admin/index.php");
             exit();
-        }else{
+        } else {
             echo "<script>alert('Invalid Username')</script>";
         }
-
-
-
     } //count return n.o of element in an arrray
 }
 
@@ -69,17 +66,25 @@ if(isset($_POST["login"])){ #updating the admin login
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-6 jumbotron-fluid">
+                <style type="text/css">
+                    .jumbotron {
+                        padding: 4rem 2rem;
+                        margin-bottom: 2rem;
+                        background-color: var(--bs-light);
+                        border-radius: .3rem;
+                    }
+                </style>
+                <div class="col-md-6 jumbotron">
                     <img src="http://localhost:8080/Hospital%20management%20system/img/adminlogo.jpeg" alt="" class="col-md-12">
                     <form action="" method="post" class="my-2">
-                        <div >
+                        <div>
                             <?php  #what will be display with missing username and password
                             if (isset($error['admin'])) {
-                                $sh =$error['admin'];
+                                $sh = $error['admin'];
 
-                                $show ="<h4 class='alert alert-danger'>$sh</h4>";
-                            }else{
-                                $show="";
+                                $show = "<h4 class='alert alert-danger'>$sh</h4>";
+                            } else {
+                                $show = "";
                             }
 
                             echo $show;
@@ -94,7 +99,7 @@ if(isset($_POST["login"])){ #updating the admin login
                             <label for="" class="text-white">Password</label>
                             <input type="password" name="pass" id="" class="form-control" placeholder="Enter password">
                         </div>
-
+<br>
                         <input type="submit" value="Login" name="login" class="btn btn-success ">
                     </form>
                 </div>
