@@ -5,19 +5,26 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
+=======
+>>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Profile</title>
 </head>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
 <body>
     <?php
 
     include("../include/header.php");
     include("../connection.php");
 
+<<<<<<< HEAD
     $ad = $_SESSION['admin'];
 
 
@@ -28,6 +35,18 @@ session_start();
 
         $user = $row['username'];
         $profiles = $row['profile'];
+=======
+    $ad=$_SESSION['admin'];
+
+
+    $query="SELECT * FROM amin WHERE username='$ad'";
+    $res = mysqli_query($connect,$query);
+
+    while ($row=mysqli_fetch_array($res)) {#fetching data from database
+        
+        $username=$row['username'];
+        $profile=$row['profile'];
+>>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
     }
     ?>
 
@@ -44,11 +63,16 @@ session_start();
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
+<<<<<<< HEAD
                                 <h4><?php echo $user;    ?> Profile</h4>
+=======
+                                <h4><?php echo $username;  ?> Profile</h4>
+>>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
 
                                 <?php
 
                                 if (isset($_POST['update'])) {
+<<<<<<< HEAD
 
                                     $profiles = $_FILES['profile']['name'];
 
@@ -61,6 +85,23 @@ session_start();
                                             #$des= "C:/xampp/htdocs/Hospital management system/admin/img".$profile;
                                             $file = $_FILES['profile']['tmp_name'];
                                             move_uploaded_file($file, 'C:/xampp/htdocs/Hospital management system/admin/img/' . $profiles);
+=======
+                                    
+                                    $profile=$_FILES['profile'];
+
+
+
+                                    if (empty($profile)) {
+
+                                    }else{
+                                        $query='UPDATE amin set profile="$profile" WHERE username="$ad"';
+                                        $result=mysqli_query($connect,$query);
+
+                                        if ($result) {
+                                            #$des= "C:/xampp/htdocs/Hospital management system/admin/img".$profile;
+                                            $file= $_FILES['profile']['tmp_name'];
+                                            move_uploaded_file($file, 'C:/xampp/htdocs/Hospital management system/admin/img/' .$profile['name']);
+>>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
                                         }
                                     }
                                 }
@@ -69,6 +110,7 @@ session_start();
 
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <?php
+<<<<<<< HEAD
 
                                     #display images
                                     echo "<img src='http://localhost:8080/Hospital%20management%20system/admin/img/$profiles' class='col-md-12'  style='height:250px'";
@@ -187,6 +229,23 @@ session_start();
                                     <input type="submit" value="Change Password" name="update" class="btn btn-info">
                                 </form>
                             </div>
+=======
+                                 
+                                   echo '<img src="/admin/img/$profile"  class="col-md-12"  style="height:250px"';                                
+
+                                  ?>
+
+                                  <br><br>
+                                  <div class="form-group">
+                                    <label for="">UPDATE PROFILE</label>
+                                    <input type="file" name="profile" id="" class="form-control">
+                                  </div>
+                                  <br>
+                                  <input type="submit" value="UPDATE" name="update" class="btn btn-success">
+                                </form>
+                            </div>
+                            <div class="col-md-6"></div>
+>>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
                         </div>
                     </div>
                 </div>
@@ -194,5 +253,8 @@ session_start();
         </div>
     </div>
 </body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
 </html>
