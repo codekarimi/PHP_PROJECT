@@ -61,7 +61,7 @@ session_start();  #to store information on browwser
                                     <td>$id</td>
                                     <td>$username</td>
                                     <td>
-                                    <a href='admin?id=$id'><button id='$id' class='btn btn-danger
+                                    <a href='http://localhost:8080/Hospital%20management%20system/admin/admin.php?id='.$id.'><button id='' class='btn btn-danger
                                     remove'> Remove</button></a>  
                                     </td>";
                                 }

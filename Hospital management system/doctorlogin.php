@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
         $error['login'] = "Enter Username";
     } else if (empty($password)) {
         $error['login'] = "Enter Password";
-    } elseif ($row['status'] == "") {
+    } elseif ($row['status'] == "Pending") {
         $error['login'] = "Please wait  for the admin to confirm";
     } elseif ($row['status'] == "Rejected") {
         $error['login'] = "Try again later";
