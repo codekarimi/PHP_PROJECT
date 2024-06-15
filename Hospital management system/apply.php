@@ -1,3 +1,71 @@
+<?php
+
+include('./connection.php');
+
+if (isset($_POST['apply'])) {
+
+    $firstname = $_POST['fname'];
+    $surname = $_POST['sname'];
+    $username = $_POST['uname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $country = $_POST['country'];
+    $password = $_POST['pass'];
+    $confirm_password = $_POST['conpass'];
+
+
+    $error = array();
+
+    if (empty($firstname)) {
+        $error['apply'] = "Enter firstname";
+    } else if (empty($surname)) {
+        $error['apply'] = "Enter surname";
+    } else if (empty($username)) {
+        $error['apply'] = "Enter username";
+    } else if (empty($email)) {
+        $error['apply'] = "Enter Email Adreess";
+    } else if (empty($phone)) {
+        $error['apply'] = "Enter phone N.o";
+    } else if (empty($gender)) {
+        $error['apply'] = "Select gender";
+    } else if (empty($country)) {
+        $error['apply'] = "Select country";
+    } else if (empty($password)) {
+        $error['apply'] = "Enter password";
+    } else if (empty($confirm_password)) {
+        $error['apply'] = "Confirm Password";
+    } else if ($confirm_password != $password) {
+        $error['apply'] = "Both password do not match";
+    }
+
+
+    if (count($error) == 0) {
+        $query = "INSERT INTO doctors(firstname,surname,username,email,gender,phone,country,password,salary,data_reg,status,profile)  VALUES('$firstname','$surname','$username','$email','$gender','$phone','$country','$password','0','NOW()','Pending','doctor.jpeg')";
+
+        $result = mysqli_query($connect, $query);
+
+        if ($result) {
+            echo "<script> alert('You have succefully Aplied') </script>";
+
+            header('Location:doctorlogin.php');
+        } else {
+            echo "<script> alert('Failed') </script>";
+        }
+    }
+}
+
+
+if (isset($error)) {
+    $s = $error['apply'];
+
+    $show = '<h5 class="text-center alert alert-danger">' . $s . '.</h5>';
+} else {
+    $show = '';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,23 +95,38 @@
                         }
                     </style>
                     <h5 class="text-center">Apply Now!</h5>
-
+                    <div>
+                        <?php
+                        echo $show;
+                        ?>
+                    </div>
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="">FirstName</label>
-                            <input type="text" name="fname" id="" class="form-control" autocomplete="off" placeholder="Enter firstname">
+                            <input type="text" name="fname" id="" class="form-control" autocomplete="off" placeholder="Enter firstname" 
                         </div>
                         <div class="form-group">
                             <label for="">Surname</label>
-                            <input type="text" name="sname" id="" class="form-control" autocomplete="off" placeholder="Enter firstname">
+                            <input type="text" name="sname" id="" class="form-control" autocomplete="off" placeholder="Enter firstname" value="<?php #display surname after refresh
+                            if (isset($_POST['sname'])) {                                                                                                                        echo $_POST['sname'];
+                             }
+                             ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Username</label>
-                            <input type="text" name="uname" id="" class="form-control" autocomplete="off" placeholder="Enter firstname">
+                            <input type="text" name="uname" id="" class="form-control" autocomplete="off" placeholder="Enter firstname" value="<?php #display username after refresh
+                            if (isset($_POST['uname'])) {
+                                echo $_POST['uname'];
+                            }
+                            ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" name="email" id="" class="form-control" autocomplete="off" placeholder="Enter Email adress">
+                            <input type="email" name="email" id="" class="form-control" autocomplete="off" placeholder="Enter Email adress" value="<?php #display email after refresh
+                            if (isset($_POST['email'])) {
+                                echo $_POST['email'];
+                            }
+                            ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Select gender</label>
@@ -55,11 +138,15 @@
                         </div>
                         <div class="form-group">
                             <label for="">Phone Number</label>
-                            <input type="number" name="phone" id="" class="form-control" autocomplete="off" placeholder="Enter Phone Number">
+                            <input type="number" name="phone" id="" class="form-control" autocomplete="off" placeholder="Enter Phone Number" value="<?php #display phone after refresh
+                                if (isset($_POST['email'])) {
+                                    echo $_POST['email'];
+                                        }
+                                    ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Country</label>
-                            <select name="gender" id="" class="form-control">
+                            <select name="country" class="form-control">
                                 <option value="">Select Country</option>
                                 <option value="Russia">Russia</option>
                                 <option value="india">india</option>

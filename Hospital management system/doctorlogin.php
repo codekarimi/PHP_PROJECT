@@ -1,3 +1,58 @@
+<?php
+
+session_start();
+include("./connection.php");
+
+if (isset($_POST['login'])) {
+
+    $uname = $_POST['uname'];
+    $password = $_POST['pass'];
+
+    $error = array();
+
+    $q = "SELECT * FROM doctors WHERE username='$uname' AND password ='$password'";
+    $qq = mysqli_query($connect, $q);
+
+    $row = mysqli_fetch_array($qq);
+
+
+    //if both feilds are empty throw errrors
+    if (empty($uname)) {
+        $error['login'] = "Enter Username";
+    } else if (empty($password)) {
+        $error['login'] = "Enter Password";
+    } elseif ($row['status'] == "") {
+        $error['login'] = "Please wait  for the admin to confirm";
+    } elseif ($row['status'] == "Rejected") {
+        $error['login'] = "Try again later";
+    }
+
+    if (count($error) == 0) {
+        $query = "SELECT * FROM doctors WHERE username ='$uname' AND password ='$password'";
+
+        $result = mysqli_query($connect, $query);
+
+        if ($result) {
+            echo "<script>alert('Done')</script>";
+
+            $_SESSION['doctor'] = $uname;
+
+            header("Location:doctor/index.php");
+            exit();
+        } else {
+            echo "<script>alert('invalid Account')</script>";
+        }
+    }
+}
+
+if (isset($error)) {#display error if fields are empty
+    $s = $error['login'];
+
+    $show = '<h5 class="text-center alert alert-danger">' . $s . '.</h5>';
+} else {
+    $show = '';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,15 +83,29 @@
                 </style>
                 <div class="col-md-6 jumbotron my-3">
                     <h5 class="text-center my-2">Doctor Login</h5>
+                    <div>
+                        <?php
 
+                        echo $show;
+                        ?>
+                    </div>
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="">Username</label>
-                            <input type="text" name="uname" id="" class="form-control" autocomplete="off" placeholder="Enter Name">
+                            <input type="text" name="uname" id="" class="form-control" autocomplete="off" placeholder="Enter Name" value="<?php #display username after refresh
+                            if (isset($_POST['uname'])) {
+                                echo $_POST['uname'];
+                            }
+                            ?>">
+
                         </div>
                         <div class="form-group">
                             <label for="">Password</label>
-                            <input type="text" name="pass" id="" class="form-control" placeholder="Enter password">
+                            <input type="password" name="pass" id="" class="form-control" placeholder="Enter password" value="<?php #display firstname after refresh
+                            if (isset($_POST['pass'])) {
+                                echo $_POST['pass'];
+                            }
+                            ?>">
                             <br>
                             <input type="submit" value="Submit" name="login" class="btn btn-success">
                         </div>

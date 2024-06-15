@@ -25,7 +25,7 @@ if (isset($_POST["login"])) { #updating the admin login
         $result = mysqli_query($connect, $query); #mysqli_query() function performs a query against a database.
 
         if (mysqli_num_rows($result) == 1) { #mysqli_num_rows() function returns the number of rows in a result set.
-            echo "<script>alert('You have Login as and admin')</script>";
+            echo "<script>alert('You have Logined as and admin')</script>";
 
             $_SESSION['admin'] = $username; #this link explain php sessions(https://www.w3schools.com/php/php_sessions.asp)
 

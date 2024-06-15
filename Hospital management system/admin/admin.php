@@ -58,17 +58,12 @@ session_start();  #to store information on browwser
 
                                     $output .= "
                                   <tr>
-                                    <td>'.$id.'</td>
-                                    <td>'.$username.'</td>
-<<<<<<< HEAD
+                                    <td>$id</td>
+                                    <td>$username</td>
                                     <td>
                                     <a href='admin?id=$id'><button id='$id' class='btn btn-danger
                                     remove'> Remove</button></a>  
                                     </td>";
-=======
-                                    <td><a href="admin?id=$id"><button id="$id" class="btn btn-danger
-                                    remove"> Remove</button></a>  </td>                                    ';
->>>>>>> ed08af2133fc04ef869bbf2283df976dd12aebc9
                                 }
 
                                 $output .= '
@@ -113,8 +108,7 @@ session_start();  #to store information on browwser
                                     }
 
                                     if (count($error) ==0) {
-                                        $q="INSERT INTO amin (username,password,profile)
-                                         VALUES ('.$uname.','.$pass.','.$image.')";#adding and admin
+                                        $q="INSERT INTO amin (username,password,profile) VALUES ('$uname','$pass','$image')";#adding and admin
                                     
                                     $result=mysqli_query($connect,$q);
 
