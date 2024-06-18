@@ -41,7 +41,7 @@ This is a Hospital Management System web application designed to streamline and 
     - Import the database schema from the `database/hospital_db.sql` file.
 
 4. **Update Database Connection:**
-    - Open the `config.php` file and update the database connection settings:
+    - Open the `connection.php` file and update the database connection settings:
       ```php
       <?php
       $servername = "localhost";
