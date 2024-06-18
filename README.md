@@ -4,7 +4,7 @@ Welcome to my PHP Projects Repository! This repository contains a collection of 
 
 ## Table of Contents
 
-1. [Project 1:Hospital Management system](#Project 1: Hospital Management System)
+1. [Project 1:Hospital Management system](#Project-1)
 2. [Project 2: crud operator](#project-2-e-commerce-website)
 3. [Project 3: Login and registrastion form](#project-3-restful-api)
 
