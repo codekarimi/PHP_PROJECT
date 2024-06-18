@@ -28,7 +28,7 @@
                 <div class="col-md-4 mx-1 shadow">
                     <img src="http://localhost:8080/Hospital%20management%20system/img/patient.jpeg" alt="" style="width: 100%;">
                     <h5 class="text-center">create account so that we can take good care of you</h5>
-                    <a href="#">
+                    <a href="account.php">
                         <button class="btn btn-success" style="margin-left:20%">Create account!!!</button>
                     </a>
                 </div>
@@ -38,7 +38,7 @@
 
                     <h5 class="text-center">We are looking for doctors</h5>
 
-                    <a href="#">
+                    <a href="apply.php">
                         <button class="btn btn-success" style="margin-left:30%">Apply now!!</button>
                     </a>
                 </div>

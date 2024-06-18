@@ -121,9 +121,9 @@ session_start();
 
                                 if (isset($_POST['update'])) {
 
-                                    $old_pass = $_POST["oldPass"];              #null-coalescence operator with PHP 7+:
-                                    $new_pass = $_POST['new_Pass'] ?? "";    #null-coalescence operator with PHP 7+:
-                                    $con_pass = $_POST['con_Pass'] ?? "";    #null-coalescence operator with PHP 7+:
+                                    $old_pass = $_POST["oldPass"];
+                                    $new_pass = $_POST['new_Pass'];    
+                                    $con_pass = $_POST['con_Pass'] ?? "";
 
                                     $error = array();
 
@@ -144,14 +144,14 @@ session_start();
                                         $error['p'] = "Invalid Password";
                                     } elseif ($new_pass != $con_pass) {
                                         $error['p'] = "Both Password doesnt match";
-
-                                        if (count($error) == 0) {
-
-                                            $query = "UPDATE amin SET password='$new_pass' WHERE username='$ad'";
-
-                                           mysqli_query($connect, $query);
-                                        }
                                 }
+                                
+                                    if (count($error) == 0) {
+
+                                        $query = "UPDATE amin SET password='$new_pass' WHERE username='$ad'";
+
+                                        mysqli_query($connect, $query);
+                                    }
                             }
                                 if (isset($error['p'])) {
                                     $e = $error['p'];
