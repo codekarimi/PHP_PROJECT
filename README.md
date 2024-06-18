@@ -5,7 +5,7 @@ Welcome to my PHP Projects Repository! This repository contains a collection of 
 ## Table of Contents
 
 1. [Project 1:Hospital Management system](#project-1-hospital-management-system)
-2. [Project 2: crud operator](##project-2-crud-operator)
+2. [Project 2: crud operator](#project-2-crud-operator)
 3. [Project 3: Login and registrastion form](#)
 
 
