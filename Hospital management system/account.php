@@ -36,11 +36,7 @@ if (isset($_POST['create'])) {
         $error['create'] = "Confirm Password";
     } else if ($confirm_password != $password) {
         $error['create'] = "Both password do not match";
-    }
-
-}
-
-    if (count($error) == 0) {
+    }else if(count($error) == 0) {
         $query = "INSERT INTO patient(firstname,surname,username,email,gender,phone,country,password,date_reg,profile)  VALUES('$firstname','$surname','$username','$email','$gender','$phone','$country','$password',NOW(),'patient.jpeg')";
 
         $result = mysqli_query($connect, $query);
@@ -53,6 +49,12 @@ if (isset($_POST['create'])) {
             echo "<script> alert('Failed') </script>";
         }
     }
+
+
+
+}
+
+    
 
 if (isset($error)) {
     $s = $error['create'];

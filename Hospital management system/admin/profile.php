@@ -59,8 +59,8 @@ session_start();
 
                                         if ($result) {
                                             #$des= "C:/xampp/htdocs/Hospital management system/admin/img".$profile;
-                                            $file = $_FILES['profile']['tmp_name'];
-                                            move_uploaded_file($file, 'C:/xampp/htdocs/Hospital management system/admin/img/' . $profiles);
+                                            $file = basename($_FILES['profile']['tmp_name']);
+                                            move_uploaded_file($file, 'C:/xampp/htdocs/Hospital management system/admin/img/'.$profiles);
                                         }
                                     }
                                 }
@@ -71,7 +71,7 @@ session_start();
                                     <?php
 
                                     #display images
-                                    echo "<img src='http://localhost:8080/Hospital%20management%20system/admin/img/$profiles' class='col-md-12'  style='height:250px'";
+                                    echo "<img src='http://localhost:8080/Hospital%20management%20system/admin/img/ $profiles' class='col-md-12'  style='height:250px'";
 
                                     ?>
 
@@ -118,48 +118,56 @@ session_start();
 
                                 <br>
                                 <?php
+                                        if (isset($_POST['change_pass'])) {
 
-                                if (isset($_POST['update'])) {
+                                            $old_pass = $_POST["old_pass"];
+                                            $new_pass = $_POST['new_pass'];
+                                            $con_pass = $_POST['con_pass'];
 
-                                    $old_pass = $_POST["oldPass"];
-                                    $new_pass = $_POST['new_Pass'];    
-                                    $con_pass = $_POST['con_Pass'] ?? "";
 
-                                    $error = array();
+                                            $error = array();
 
-                                    $que= "SELECT * FROM amin WHERE username='$ad'";
-                                    $old = mysqli_query($connect, $que);
+                                            $que = "SELECT * FROM amin WHERE username='$ad'";
+                                            $old = mysqli_query($connect, $que);
 
-                                    $row = mysqli_fetch_array($old);
-                                    $pass = $row['password'] ?? "";
+                                            $row1 = mysqli_fetch_array($old);
+                                            $pass = $row1['password'];
 
-                                    #display errors when password input are empty
-                                    if (empty($old_pass)) {
-                                        $error['p'] = "Enter old password";
-                                    } else if (empty($new_pass)) {
-                                        $error['p'] = "Enter  new password";
-                                    } else if (empty($con_pass)) {
-                                        $error['p'] = "Enter Confirm  password";
-                                    } else if ($oldpass != $pass) {
-                                        $error['p'] = "Invalid Password";
-                                    } elseif ($new_pass != $con_pass) {
-                                        $error['p'] = "Both Password doesnt match";
-                                }
-                                
-                                    if (count($error) == 0) {
+                                            #display errors when password input are empty
+                                            if (empty($old_pass)) {
+                                                $error['p'] = "Enter old password";
+                                            } else if (empty($new_pass)) {
+                                                $error['p'] = "Enter  new password";
+                                            } else if (empty($con_pass)) {
+                                                $error['p'] = "Enter Confirm  password";
+                                            } else if ($old_pass != $pass) {
+                                                $error['p'] = "Invalid Password";
+                                            } elseif ($new_pass != $con_pass) {
+                                                $error['p'] = "Both Password doesnt match";
 
-                                        $query = "UPDATE amin SET password='$new_pass' WHERE username='$ad'";
+                                                // if (count($error) == 0) {
 
-                                        mysqli_query($connect, $query);
-                                    }
-                            }
-                                if (isset($error['p'])) {
-                                    $e = $error['p'];
+                                                //     $query = "UPDATE doctors SET password='$new_pass' WHERE username='$doc'";
 
-                                    $show = "<h5 class ='text-center alert alert-danger'>$e</h5>";
-                                } else {
-                                    $show = "";
-                                }
+                                                //     mysqli_query($connect, $query);
+                                                // }
+                                            }
+
+                                            if (count($error) == 0) {
+
+                                                $query = "UPDATE amin SET password='$new_pass' WHERE username='$ad'";
+
+                                                mysqli_query($connect, $query);
+                                            }
+                                        }
+
+                                        if (isset($error['p'])) {
+                                            $e = $error['p'];
+
+                                            $show = "<h5 class ='text-center alert alert-danger'>$e</h5>";
+                                        } else {
+                                            $show = "";
+                                        }
                                 ?>
                                 <form action="" method="post">
 
@@ -173,7 +181,7 @@ session_start();
                                     </div>
                                     <div class="form-group">
                                         <label for="">Old Password</label>
-                                        <input type="password" name="oldpass" class="form-control">
+                                        <input type="password" name="old_pass" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="">New Password</label>
@@ -184,7 +192,7 @@ session_start();
                                         <label for="">Confirm Password</label>
                                         <input type="password" name="con_pass" id="" class="form-control">
                                     </div>
-                                    <input type="submit" value="Change Password" name="update" class="btn btn-info">
+                                    <input type="submit" value="Change Password" name="change_pass" class="btn btn-info">
                                 </form>
                             </div>
                         </div>

@@ -34,6 +34,7 @@ session_start();  #to store information on browwser
 
 
                                 <?php
+                                
                                 $ad = $_SESSION["admin"];
                                 $query = "SELECT * FROM amin WHERE username !='$ad'";
                                 $res = mysqli_query($connect, $query);
@@ -61,7 +62,7 @@ session_start();  #to store information on browwser
                                     <td>$id</td>
                                     <td>$username</td>
                                     <td>
-                                    <a href='http://localhost:8080/Hospital%20management%20system/admin/admin.php?id='.$id.'><button id='' class='btn btn-danger
+                                    <a href='http://localhost:8080/Hospital%20management%20system/admin/admin.php'><button id='remove-btn' class='btn btn-danger
                                     remove'> Remove</button></a>  
                                     </td>";
                                 }
@@ -75,12 +76,12 @@ session_start();  #to store information on browwser
                                 echo $output;
 
 
-                                if (isset($_GET['id'])) {#deleting user
+                                if (isset($_GET['id'])) { #deleting user
 
-                                    $id= $_GET['id'];
+                                    $id = $_GET['id'];
 
-                                    $query="DELETE FROM amin WHERE ID='$id'";
-                                    mysqli_query($connect,$query);
+                                    $query = "DELETE FROM amin WHERE ID='$id'";
+                                    mysqli_query($connect, $query);
                                 }
                                 ?>
 
@@ -92,56 +93,57 @@ session_start();  #to store information on browwser
                                 <?php
 
                                 if (isset($_POST['add'])) {
-                                    
-                                    $uname =$_POST['uname'];
-                                    $pass =$_POST['pass'];
-                                    $image =$_FILES['img'];
 
-                                    $error = array();#array to display error
+                                    $uname = $_POST['uname'];
+                                    $pass = $_POST['pass'];
+                                    $image = $_FILES['img'];
+
+                                    $error = array(); #array to display error
 
                                     if (empty($uname)) {
-                                        $error['u']="Enter Username";
-                                    }else if (empty($pass)){
+                                        $error['u'] = "Enter Username";
+                                    } else if (empty($pass)) {
                                         $error['u'] = "Enter Password";
-                                    }elseif(empty($image)){
+                                    } elseif (empty($image)) {
                                         $error['u'] = "Add Admin Profile";
                                     }
 
-                                    if (count($error) ==0) {
-                                        $q="INSERT INTO amin (username,password,profile) VALUES ('$uname','$pass','$image')";#adding and admin
-                                    
-                                    $result=mysqli_query($connect,$q);
+                                    if (count($error) == 0) {
+                                        $q = "INSERT INTO amin (username,password,profile) VALUES ('$uname','$pass','$image')"; #adding and admin
 
-                                    if ($result) {
-                                        $upload= $_FILES['img']['tmp_name'];
-                                        move_uploaded_file($upload,
-                                                'C:/xampp/htdocs/Hospital management system/admin/img/'.$image['name']);
-                                                
-                                                // The move_uploaded_file() function moves an uploaded file to a new destination.Note: This function only works on files uploaded via PHP's HTTP POST upload mechanism.Note: If the destination file already exists, it will be overwritten.
-                                    
-                                    }else{
+                                        $result = mysqli_query($connect, $q);
 
-                                    }
+                                        if ($result) {
+                                            $upload = $_FILES['img']['tmp_name'];
+                                            move_uploaded_file(
+                                                $upload,
+                                                'C:/xampp/htdocs/Hospital management system/admin/img/' . $image['name']
+                                            );
 
-                                }
-                                
-                            }
+                                            // The move_uploaded_file() function moves an uploaded file to a new destination.Note: This function only works on files uploaded via PHP's HTTP POST upload mechanism.Note: If the destination file already exists, it will be overwritten.
 
-                                        // $er =$error['u'];
-
-                                        if (isset($error['u'])) {
-                                            $er = $error['u'];
-
-                                            $show = '<h5 class="text-center alert alert-danger">'.$er.'</h5>';
                                         } else {
-                                            $show = '';
                                         }
+                                    }
+                                }
 
-                           
+                                // $er =$error['u'];
+
+                                if (isset($error['u'])) {
+                                    $er = $error['u'];
+
+                                    $show = '<h5 class="text-center alert alert-danger">' . $er . '</h5>';
+                                } else {
+                                    $show = '';
+                                }
+
+
                                 ?>
                                 <h5 class="text-center">Add Admin</h5>
-
+                                <div class="removed"></div>
                                 <form action="" method="post" enctype="multipart/form-data">
+
+
                                     <div>
                                         <?php
                                         echo $show;
@@ -174,6 +176,39 @@ session_start();  #to store information on browwser
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // $(document).ready(function() {
+
+        //     $(document).on('click', '#remove-btn', function() {
+
+        //         var id = $(this).attr('id'); //The attr() method sets or returns attributes and values of the selected elements.
+        //         $.ajax({
+        //             url: 'removeadmin.php', //Specifies the URL to send the request to. Default is the current page
+        //             method: 'POST',
+        //             data: {
+        //                 id: id
+        //             }, //Specifies data to be sent to the server
+        //             success: function(data) { //A function to be run when the request succeeds
+        //                 alert('sucessful');
+        //             }
+        //         });
+
+        //     })
+
+
+
+        //     // $("#remove-btn").click(function() {
+        //     //     $.ajax({
+        //     //         url: "removeadmin.php",
+        //     //         success: function(result) {
+        //     //             $(".remove").html(result);
+        //     //         }
+        //     //     });
+        //     // });
+
+        // });
+    </script>
 </body>
 
 </html>

@@ -60,8 +60,8 @@ error_reporting(0);
 
                                             if ($result) {
                                                 #$des= "C:/xampp/htdocs/Hospital management system/admin/img".$profile;
-                                                $img = $_FILES['img']['tmp_name'];
-                                                move_uploaded_file($img, "C:/xampp/htdocs/Hospital management system/admin/img/" . $img);
+                                                $img =basename($_FILES['img']['tmp_name']);
+                                                move_uploaded_file($img, "C:/xampp/htdocs/Hospital management system/admin/img/".$img);
                                             }
                                         }
                                     }

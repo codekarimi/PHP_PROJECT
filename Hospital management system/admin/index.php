@@ -87,12 +87,21 @@ session_start();
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <h5 class="my-2 text-white text-center" style="font: size 30px;">0</h5>
+                                             <?php
+                                        #code displaying nu,ber of approved Doctors
+                                            $patient =mysqli_query($connect,"SELECT * FROM patient");
+
+                                            $num3=mysqli_num_rows($patient);
+                                            
+                                            ?>
+                                            <h5 class="my-2 text-white text-center" style="font: size 30px;"><?php
+                                            echo $num3;
+                                            ?></h5>
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Patient</h5>
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="#"><i class="fas fa-procedures fa-3x my-4" style="color:white"></i></a>
+                                            <a href="http://localhost:8080/Hospital%20management%20system/admin/patient.php"><i class="fas fa-procedures fa-3x my-4" style="color:white"></i></a>
                                         </div>
                                     </div>
                                 </div>
