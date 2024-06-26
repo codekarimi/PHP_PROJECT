@@ -56,11 +56,11 @@
             <li class="nav-item"><a href="http://localhost:8080/Hospital management system/doctor/logout.php" class="nav-link text-white">logout</a></li>
 ';
 
-      }elseif (isset($_SESSION['patient'])) {
+      }else if (isset($_SESSION['patient'])) {
 
         $user = $_SESSION['patient'];
         echo '
-            <li class="nav-item"><a href="" class="nav-link text-white">', $user, '</a></li>
+            <li class="nav-item"><a href="" class="nav-link text-white">',$user,'</a></li>
             <li class="nav-item"><a href="http://localhost:8080/Hospital management system/patient/logout.php" class="nav-link text-white">logout</a></li>
 ';
       }

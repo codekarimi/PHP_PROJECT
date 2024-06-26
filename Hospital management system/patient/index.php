@@ -2,7 +2,6 @@
 
 session_start();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +59,7 @@ session_start();
                                                     <h5 class="text-white my-4">Book Appointment</h5>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <a href="">
+                                                    <a href="../patient/appointment.php">
                                                         <i class="fa-solid fa-calendar-days fa-3x my-4" style="color: white;"></i>
                                                     </a>
                                                 </div>
@@ -74,7 +73,7 @@ session_start();
                                                     <h5 class="text-white my-4">My Invoice</h5>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <a href="">
+                                                    <a href="../patient/invoice.php">
                                                         <i class="fa-solid fa-file-invoice fa-3x my-4" style="color: white;"></i>
                                                     </a>
                                                 </div>

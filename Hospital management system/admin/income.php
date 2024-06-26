@@ -2,7 +2,6 @@
 
 session_start();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,31 +9,31 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Total Doctor</title>
+    <title>Total Income</title>
 </head>
 
 <body>
+
     <?php
     include('../include/header.php');
-
     include('../connection.php');
-
     ?>
 
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-2" style="margin-left: -30px;">
-                    <?php
 
+                    <?php
                     include('../admin/sidenav.php');
                     ?>
                 </div>
-
                 <div class="col-md-10">
-                    <h5 class="text-center font-weight-bold my-3">Total Patients</h5>
+                    <h5 class="text-center"></h5>
+
                     <?php
-                    $query = "SELECT * FROM patient ORDER BY date_reg ASC ";
+
+                    $query = "SELECT * FROM income";
 
                     $res = mysqli_query($connect, $query);
 
@@ -45,15 +44,11 @@ session_start();
  <table class="table table-bordered">
         <tr>
             <th>ID</th>
-            <th>Firstname</th>
-            <th>Surname</th>
-            <th>Username</th>
-            <th>Gender</th>
-            <th>Phone</th>
-            <th>Country</th>
-            <th>Date Registered</th>
-            <th>Action</th>
-        
+            <th>Doctor</th>
+            <th>Patient</th>
+            <th>Date Discharged</th>
+            <th>Fee</th>
+            <th>Amount Patient</th>
 
         </tr>
 
@@ -63,7 +58,7 @@ session_start();
                         $output .= '
     
      <tr>
-            <td colspan="10" class="text-center"> No Patients yet.</td>
+            <td colspan="4" class="text-center"> No patient Discharaged yet </td>
         </tr>
 
 
@@ -75,17 +70,13 @@ session_start();
     
          <tr>
             <td>' . $row["id"] . '</td>
-            <td>' . $row["firstname"] . '</td>
-            <td>' . $row["surname"] . '</td>
-            <td>' . $row["username"] . '</td>
-            <td>' . $row["gender"] . '</td>
-            <td>' . $row["phone"] . '</td>
-            <td>' . $row["country"] . '</td>
-            <td>' . $row["date_reg"] . '</td>
+            <td>' . $row["doctor"] . '</td>
+            <td>' . $row["patient"] . '</td>
+            <td>' . $row["date_dis"] . '</td>
+            <td>' . $row["amount_paid"] . '</td>
             <td>
-             <a href="http://localhost:8080/Hospital%20management%20system/admin/view.php?id=' . $row['id'] . '"><button class="btn btn-info">View</button></a>
+           <a href="http://localhost:8080/Hospital%20management%20system/admin/edit.php?id=' . $row['id'] . '"><button class="btn btn-info">Edit</button></a>
             </td>
-           
        
     ';
                     }
@@ -102,6 +93,7 @@ session_start();
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

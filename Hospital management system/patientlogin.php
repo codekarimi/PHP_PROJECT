@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
         $error['login'] = "Enter Username";
     } else if (empty($password)) {
         $error['login'] = "Enter Password";
-    } elseif ($row['password'] != $password) {
+    } else if ($row['password'] != $password) {
         $error['login'] = "Wrong password";
     } 
 
@@ -31,14 +31,14 @@ if (isset($_POST['login'])) {
         $result = mysqli_query($connect, $query);
 
         if ($result) {
-            echo "<script>alert('Done')</script>";
+            echo "<script> alert('Done'); </script>";
 
             $_SESSION['patient'] = $uname;
 
             header("Location:patient/index.php");
             exit();
         } else {
-            echo "<script>alert('invalid Account')</script>";
+            echo "<script> alert('invalid Account'); </script>";
         }
     }
 }
@@ -46,7 +46,7 @@ if (isset($_POST['login'])) {
 if (isset($error)) {#display error if fields are empty
     $s = $error['login'];
 
-    $show = '<h5 class="text-center alert alert-danger">' . $s . '.</h5>';
+    $show = '<h5 class="text-center alert alert-danger">'.$s.'.</h5>';
 } else {
     $show = '';
 }
@@ -79,7 +79,7 @@ if (isset($error)) {#display error if fields are empty
                     }
                 </style>
                 <div class="col-md-6 jumbotron my-5">
-                    <h5 class="text-center my-3">Doctor Login</h5>
+                    <h5 class="text-center my-3">Patient Login</h5>
                     <div>
                         <?php
 

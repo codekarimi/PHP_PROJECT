@@ -27,14 +27,14 @@ session_start();
                 <div class="col-md-2" style="margin-left: -30px;">
                     <?php
 
-                    include('../admin/sidenav.php');
+                    include('../doctor/sidenav.php');
                     ?>
                 </div>
 
                 <div class="col-md-10">
                     <h5 class="text-center font-weight-bold my-3">Total Patients</h5>
                     <?php
-                    $query = "SELECT * FROM patient ORDER BY date_reg ASC ";
+                    $query = "SELECT * FROM appointment WHERE status='pending' ";
 
                     $res = mysqli_query($connect, $query);
 
@@ -47,11 +47,11 @@ session_start();
             <th>ID</th>
             <th>Firstname</th>
             <th>Surname</th>
-            <th>Username</th>
             <th>Gender</th>
             <th>Phone</th>
-            <th>Country</th>
-            <th>Date Registered</th>
+            <th>Appointment Date</th>
+            <th>Symptoms</th>
+            <th>Date Booked</th>
             <th>Action</th>
         
 
@@ -63,7 +63,7 @@ session_start();
                         $output .= '
     
      <tr>
-            <td colspan="10" class="text-center"> No Patients yet.</td>
+            <td colspan="9" class="text-center"> No Appointments </td>
         </tr>
 
 
@@ -77,13 +77,13 @@ session_start();
             <td>' . $row["id"] . '</td>
             <td>' . $row["firstname"] . '</td>
             <td>' . $row["surname"] . '</td>
-            <td>' . $row["username"] . '</td>
             <td>' . $row["gender"] . '</td>
             <td>' . $row["phone"] . '</td>
-            <td>' . $row["country"] . '</td>
-            <td>' . $row["date_reg"] . '</td>
+            <td>' . $row["appointment_date"] . '</td>
+            <td>' . $row["symptoms"] . '</td>
+            <td>' . $row["date_booked"] . '</td>
             <td>
-             <a href="http://localhost:8080/Hospital%20management%20system/admin/view.php?id=' . $row['id'] . '"><button class="btn btn-info">View</button></a>
+             <a href="http://localhost:8080/Hospital%20management%20system/doctor/discharged.php?id='.$row['id'].'"><button class="btn btn-info">Check</button></a>
             </td>
            
        

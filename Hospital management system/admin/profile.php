@@ -53,6 +53,9 @@ session_start();
                                     $profiles = $_FILES['profile']['name'];
 
                                     if (empty($profiles)) {
+
+                                  echo "<script> alert('Enter Picture please') </script>";
+
                                     } else {
                                         $query = 'UPDATE amin set profile="$profiles" WHERE username="$ad"';
                                         $result = mysqli_query($connect, $query);
@@ -64,6 +67,8 @@ session_start();
                                         }
                                     }
                                 }
+
+
                                 ?>
 
 
@@ -71,7 +76,7 @@ session_start();
                                     <?php
 
                                     #display images
-                                    echo "<img src='http://localhost:8080/Hospital%20management%20system/admin/img/ $profiles' class='col-md-12'  style='height:250px'";
+                                    echo "<img src='http://localhost:8080/Hospital%20management%20system/admin/img/$profiles' class='col-md-12'  style='height:250px'";
 
                                     ?>
 

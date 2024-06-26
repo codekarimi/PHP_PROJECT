@@ -49,7 +49,7 @@ session_start();
                                             $ad = mysqli_query($connect, "SELECT * FROM amin");
                                             $num = mysqli_num_rows($ad);
 
-                                            echo '<h5 class="my-2 text-white text-center" style="font: size 30px;">' . $num . '</h5>';
+                                            echo '<h5 class="my-2 text-white text-center" style="font-size: 30px;">' . $num . '</h5>';
                                             ?>
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Admin</h5>
@@ -65,15 +65,14 @@ session_start();
                                     <div class="row">
                                         <div class="col-md-8">
                                             <?php
-                                        #code displaying nu,ber of approved Doctors
-                                            $doctors =mysqli_query($connect,"SELECT * FROM doctors WHERE status='Approved'");
+                                            #code displaying nu,ber of approved Doctors
+                                            $doctors = mysqli_query($connect, "SELECT * FROM doctors WHERE status='Approved'");
 
-                                            $num2=mysqli_num_rows($doctors);
-                                            
+                                            $num2 = mysqli_num_rows($doctors);
+
                                             ?>
-                                            <h5 class="my-2 text-white text-center" style="font: size 30px;"><?php
-                                            echo $num2;
-                                            ?></h5>
+                                            <h5 class="my-2 text-white text-center" style="font-size: 30px;"><?php
+                                            echo $num2;?></h5>
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Doctors</h5>
                                         </div>
@@ -87,16 +86,15 @@ session_start();
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-8">
-                                             <?php
-                                        #code displaying nu,ber of approved Doctors
-                                            $patient =mysqli_query($connect,"SELECT * FROM patient");
+                                            <?php
+                                            #code displaying nu,ber of approved Doctors
+                                            $patient = mysqli_query($connect, "SELECT * FROM patient");
 
-                                            $num3=mysqli_num_rows($patient);
-                                            
+                                            $num3 = mysqli_num_rows($patient);
+
                                             ?>
-                                            <h5 class="my-2 text-white text-center" style="font: size 30px;"><?php
-                                            echo $num3;
-                                            ?></h5>
+                                            <h5 class="my-2 text-white text-center" style="font-size:30px;"><?php
+                                            echo $num3; ?></h5>
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Patient</h5>
                                         </div>
@@ -111,12 +109,23 @@ session_start();
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <h5 class="my-2 text-white text-center" style="font: size 30px;">0</h5>
+                                            <?php
+                                            #code displaying nu,ber of approved Doctors
+                                            $report = mysqli_query($connect, "SELECT * FROM report");
+
+                                            $num4 = mysqli_num_rows($report);
+
+                                            ?>
+                                            <h5 class="my-2 text-white text-center" style="font-size: 30px;">
+                                                <?php
+                                                echo $num4;
+                                                ?>
+                                            </h5>
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Report</h5>
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="#"><i class="fas fa-flag fa-3x my-4" style="color:white"></i></a>
+                                            <a href="../admin/report.php"><i class="fas fa-flag fa-3x my-4" style="color:white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -127,15 +136,14 @@ session_start();
                                     <div class="row">
                                         <div class="col-md-8">
                                             <?php
-                                            
-                                            $job=mysqli_query($connect,"SELECT * FROM doctors WHERE status='Pending'");
 
-                                            $num1=mysqli_num_rows($job);
-                                            
+                                            $job = mysqli_query($connect, "SELECT * FROM doctors WHERE status='Pending'");
+
+                                            $num1 = mysqli_num_rows($job);
+
                                             ?>
-                                            <h5 class="my-2 text-white text-center" style="font: size 30px;"><?php
-                                            echo $num1;
-                                            ?></h5>
+                                            <h5 class="my-2 text-white text-center" style="font-size: 30px;"><?php
+                                            echo $num1; ?></h5>
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Job Request</h5>
                                         </div>
@@ -151,12 +159,25 @@ session_start();
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <h5 class="my-2 text-white text-center" style="font: size 30px;">0</h5>
+                                            <?php
+
+                                            $in = mysqli_query($connect, "SELECT sum(amount_paid) as profit FROM income");
+
+                                            #sum() returns total numeric values
+                                            #as keyword rename table /column
+
+                                            $row = mysqli_fetch_array($in);
+
+                                            $inc = $row['profit'];
+
+                                            ?>
+                                            <h5 class="my-2 text-white text-center" style="font-size: 30px;"> $ <?php
+                                            echo $inc;?></h5>
                                             <h5 class="text-white">Total</h5>
                                             <h5 class="text-white">Income</h5>
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="#"><i class="fas fa-money-check-alt fa-3x my-4" style="color:white"></i></a>
+                                            <a href="../admin/income.php"><i class="fas fa-money-check-alt fa-3x my-4" style="color:white"></i></a>
                                         </div>
                                     </div>
                                 </div>

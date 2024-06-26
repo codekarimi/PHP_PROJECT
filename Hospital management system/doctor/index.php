@@ -1,8 +1,5 @@
 <?php
-
 session_start();
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +13,7 @@ session_start();
 <body>
     <?php
     include('../include/header.php');
+    include('../connection.php');
 
     ?>
 
@@ -51,12 +49,21 @@ session_start();
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <h5 class="text-white my-2" style="font-size: 30px;">0</h5>
+                                                <?php
+                                                #code displaying nu,ber of approved Doctors
+                                                $patient = mysqli_query($connect, "SELECT * FROM patient");
+
+                                                $num3 = mysqli_num_rows($patient);
+
+                                                ?>
+                                                <h5 class="text-white my-2" style="font-size: 30px;"><?php
+                                                echo $num3;
+                                                ?></h5>
                                                 <h5 class="text-white  my-4">Total</h5>
                                                 <h5 class="text-white  my-4">Patient</h5>
                                             </div>
                                             <div class="col-md-4">
-                                                <a href="http://localhost:8080/Hospital%20management%20system/doctor/profile.php"> <i class="fas fa-procedures fa-3x my-4" style="color: white;"></i></a>
+                                                <a href="http://localhost:8080/Hospital%20management%20system/doctor/patient.php"> <i class="fas fa-procedures fa-3x my-4" style="color: white;"></i></a>
 
                                             </div>
                                         </div>
@@ -67,12 +74,24 @@ session_start();
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <h5 class="text-white my-2" style="font-size: 30px;">0</h5>
+                                                <?php
+                                                #code displaying nu,ber of approved Doctors
+                                                $appointment= mysqli_query($connect, "SELECT * FROM appointment WHERE status='pending'");
+
+                                                $num4 = mysqli_num_rows($appointment);
+
+                                                ?>
+                                                <h5 class="text-white my-2" style="font-size: 30px;">
+                                                    <?php
+
+                                                    echo $num4;
+                                                    ?>
+                                                </h5>
                                                 <h5 class="text-white my-4">Total</h5>
                                                 <h5 class="text-white my-4">Appointment</h5>
                                             </div>
                                             <div class="col-md-4">
-                                                <a href="http://localhost:8080/Hospital%20management%20system/doctor/profile.php"> <i class=" fa-solid fa-calendar-days fa-3x my-4" style="color: white;"></i></a>
+                                                <a href="http://localhost:8080/Hospital%20management%20system/doctor/appointment.php"> <i class=" fa-solid fa-calendar-days fa-3x my-4" style="color: white;"></i></a>
 
                                             </div>
                                         </div>

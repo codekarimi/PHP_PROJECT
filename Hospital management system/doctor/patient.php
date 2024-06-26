@@ -27,7 +27,7 @@ session_start();
                 <div class="col-md-2" style="margin-left: -30px;">
                     <?php
 
-                    include('../admin/sidenav.php');
+                    include('../doctor/sidenav.php');
                     ?>
                 </div>
 
@@ -83,7 +83,7 @@ session_start();
             <td>' . $row["country"] . '</td>
             <td>' . $row["date_reg"] . '</td>
             <td>
-             <a href="http://localhost:8080/Hospital%20management%20system/admin/view.php?id=' . $row['id'] . '"><button class="btn btn-info">View</button></a>
+             <a href="http://localhost:8080/Hospital%20management%20system/doctor/view.php?id=' . $row['id'] . '"><button class="btn btn-info">View</button></a>
             </td>
            
        
