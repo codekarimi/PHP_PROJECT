@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap cdn link  -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- jquery cdn link -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+
+    <!-- jquery Google CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <!-- fontawesome cdn link  -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+
+    <!-- fontawesome cdn for all assests -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- link css -->
+    <link rel="stylesheet" href="./style.css" type="text/css">
+
+    <!-- google fonts  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+    <title>Dashboard</title>
+</head>
+
+<body id="loginbody">
+
+
+  
+    <div class="dashboardmaincontainer">
+        <div id="dashboard-sidebar">
+            <div class="dashboard-sidebar-user">
+                <h1 class="dashboard-logo" id="Dashboard-logo">IMS</h1>
+                <div class="dashboard-siderbar-user">
+                    <img src="" alt="User image" id="user-img">
+                    <span>Gomez</span>
+                </div>
+            </div>
+            <div class="dashboard-sidebar-menu">
+                <ul class="dashboard-list-menu">
+                    <li><a href=""><i class="fa-solid fa-gauge"></i><span class="menutext">Dashboard</span></a></li>
+                    <li><a href=""><i class="fa-solid fa-gauge"></i><span class="menutext">Dashboard</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dashboard-content-container">
+            <div class="dashboard-content-topbar">
+                <a href="" id="togglebtn"><i class="fa-solid fa-bars"></i></a>
+                <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i>log out</a>
+            </div>
+
+            <div class="dashboard_contents">
+                <div id="dashboard-content-main">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script >
+
+        var sidebar= true;
+        
+        const togglebtn =document.getElementById('togglebtn');
+
+        togglebtn.addEventListener("click",  (event) => {  
+             //addEventListener() method attaches an event handler to a document.
+            event.preventDefault();
+                document.getElementById('dashboard-sidebar').style.width="10%";
+                // document.getElementById('dashboard-content-main').style.width="90%";
+                document.getElementsById('Dashboard-logo').style.color="blue";
+                document.getElementById('user-img').style.width="1550px";
+
+                var menutext = document.getElementsByClassName("menutext");
+                for(var i=0; i<menutext.length;i++){
+                    menutext[i].style.display='none';
+                }
+            });
+    </script>
+
+</body>
+
+</html>
