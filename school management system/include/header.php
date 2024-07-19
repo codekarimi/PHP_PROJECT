@@ -61,7 +61,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                         <ul class="dropdown-menu" id="navbarDropdown">
-                            <li class="nav-item"><a href="#" class="dropdown-item">Admin</a></li>
+                            <li class="nav-item"><a href="./adminlogin.php" class="dropdown-item">Admin</a></li>
                             <li class="nav-item"><a href="#" class="dropdown-item">Lecture</a></li>
                             <li class="nav-item"><a href="#" class="dropdown-item">Student</a></li>
                             <li class="nav-item"><a href="#" class="dropdown-item">Parent</a></li>
