@@ -26,17 +26,17 @@ if (empty($username)) {
     $error['admin'] = "Enter Password";
 }else if (password_verify($password, $pass_hash)) {
         # code...
-        echo '<script>window.location.href="http://localhost:8080/school%20management%20system/admin/"</script>';
+        echo '<script>window.location.href="http://localhost:8080/school%20management%20system/admin"</script>';
         $_SESSION['admin'] =$username;
 
         $output .="<p class='alert alert-success text-center'>You Have succesfully Logined In </p>";
 }else{
-    $output .= "<p class='alert alert-success text-center'>Failed to Login </p>";
+    $output .= "<p class='alert alert-danger text-center'>Failed to Login </p>";
     }
 
-if (isset($error)) {
+if (isset($error['admin'])) {
     # code...
-    $output .= "<p class='alert alert-success text-center'>" . $error['admin'] . "</p>";
+    $output .= "<p class='alert alert-danger text-center'>" . $error['admin'] . "</p>";
 } else {
     $output .= "";
 }
